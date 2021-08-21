@@ -1,8 +1,13 @@
-import React from 'react'
-import { NextPage } from 'next'
+import React from 'react';
+import { NextPage } from 'next';
+import Button from '@material-ui/core/Button';
 
 const Home: NextPage = () => {
- return <h1>Hello, World!</h1>
-}
+  return (
+    <Button variant="contained" color="primary">
+      Hello World
+    </Button>
+  );
+};
 
-export default Home
+export default Home;
