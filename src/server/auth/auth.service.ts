@@ -1,7 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User, UserDocument } from '../user/user.schema';
 import { UserService } from '../user/user.service';
+import { RegisterResponse } from '../../shared/interfaces/auth';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -15,10 +17,8 @@ export class AuthService {
     password: string,
   ): Promise<UserDocument | null> {
     const user = await this.userService.findOne(username);
-    if (user && user.password === password) {
-      return user;
-    }
-    return null;
+    const isMatch = await bcrypt.compare(password, user.password);
+    return isMatch && user;
   }
 
   async login(user: UserDocument) {
@@ -26,7 +26,12 @@ export class AuthService {
     return { access_token: this.jwtService.sign(payload) };
   }
 
-  async register(user: User): Promise<UserDocument> {
-    return this.userService.create(user);
+  async register(user: User): Promise<RegisterResponse> {
+    const existingUser = await this.userService.findOne(user.username);
+    if (existingUser) {
+      throw new HttpException('Username is taken', HttpStatus.CONFLICT);
+    }
+    const { username, ...rest } = await this.userService.create(user);
+    return { username };
   }
 }
