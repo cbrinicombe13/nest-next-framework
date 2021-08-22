@@ -1,10 +1,18 @@
 // import App from "next/app";
 import type { AppProps /*, AppContext */ } from 'next/app';
 import Head from 'next/head';
+import {
+  createTheme,
+  makeStyles,
+  ThemeProvider,
+  Theme
+} from '@material-ui/core/styles';
+
+const theme: Theme = createTheme();
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <Head>
         <link
           rel="stylesheet"
@@ -16,7 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Component {...pageProps} />
-    </div>
+    </ThemeProvider>
   );
 }
 
