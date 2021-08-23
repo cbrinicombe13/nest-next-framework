@@ -4,6 +4,6 @@ import { ViewController } from './view.controller';
 
 @Module({
   providers: [ViewService],
-  controllers: [ViewController]
+  controllers: [ViewController],
 })
 export class ViewModule {}

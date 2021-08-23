@@ -2,8 +2,8 @@ import { IsNotEmpty, IsString, MinLength } from 'class-validator';
 import { User } from '../../server/user/user.schema';
 
 export interface IUser {
-    username: string;
-    password: string;
+  username: string;
+  password: string;
 }
 
 export class RegisterDto implements IUser {

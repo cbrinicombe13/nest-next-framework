@@ -3,7 +3,7 @@ import { Request } from 'express';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './guards/jwt.guard';
 import { LocalAuthGuard } from './guards/local.guard';
-import { UserDocument } from "../user/user.schema";
+import { UserDocument } from '../user/user.schema';
 import { RegisterDto } from '../../shared/types/auth';
 
 @Controller('auth')
