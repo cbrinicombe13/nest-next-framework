@@ -1,5 +1,5 @@
 {
-  "name": "findcodeprojects",
+  "name": "nodeframework",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -30,6 +30,8 @@
     "@nestjs/passport": "^8.0.1",
     "@nestjs/platform-express": "^8.0.0",
     "bcrypt": "^5.0.1",
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
     "mongoose": "^5.13.8",
     "next": "^11.1.0",
     "passport": "^0.4.1",

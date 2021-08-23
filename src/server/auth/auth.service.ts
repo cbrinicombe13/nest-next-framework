@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User, UserDocument } from '../user/user.schema';
+import { UserDocument } from '../user/user.schema';
 import { UserService } from '../user/user.service';
-import { RegisterResponse } from '../../shared/interfaces/auth';
+import { RegisterDto, RegisterResponse } from '../../shared/types/auth';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -26,7 +26,7 @@ export class AuthService {
     return { access_token: this.jwtService.sign(payload) };
   }
 
-  async register(user: User): Promise<RegisterResponse> {
+  async register(user: RegisterDto): Promise<RegisterResponse> {
     const existingUser = await this.userService.findOne(user.username);
     if (existingUser) {
       throw new HttpException('Username is taken', HttpStatus.CONFLICT);
