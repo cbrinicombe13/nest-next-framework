@@ -1,10 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { IUser } from '../../shared/types/auth';
 
 export type UserDocument = User & Document;
 
 @Schema()
-export class User {
+export class User implements IUser {
   @Prop({
     required: true,
   })

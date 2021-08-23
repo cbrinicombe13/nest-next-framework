@@ -1,11 +1,18 @@
-import { IsNotEmpty, MinLength } from 'class-validator';
+import { IsNotEmpty, IsString, MinLength } from 'class-validator';
 import { User } from '../../server/user/user.schema';
 
-export class RegisterDto {
+export interface IUser {
+    username: string;
+    password: string;
+}
+
+export class RegisterDto implements IUser {
   @IsNotEmpty()
+  @IsString()
   username: string;
 
   @IsNotEmpty()
+  @IsString()
   @MinLength(8)
   password: string;
 }
